@@ -11,10 +11,11 @@ RUN pacman -Sy --noconfirm pacman-contrib && \
 RUN pacman -S --noconfirm sudo git && \
     git clone --recursive https://github.com/aignas/dotfiles.git ${HOME}/.dotfiles && \
     "${HOME}/.dotfiles/bin/dotr" --no-push --no-gitconfig && \
-    chsh -s $(which zsh) && \
-    # Install extra tools
-    pacman -S --noconfirm \
-        pandoc texlive-most texlive-lang zola asciidoc
+    chsh -s $(which zsh)
 
-env SHELL="/root/.dotfiles/bin:$PATH"
+# Install extra tools
+RUN pacman -S --noconfirm \
+        pandoc texlive-most texlive-lang asciidoc
+
+env SHELL="${HOME}/.dotfiles/bin:$PATH"
 env PATH="/root/.dotfiles/bin:$PATH"
