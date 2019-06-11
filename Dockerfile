@@ -10,6 +10,8 @@ RUN pacman -Sy --noconfirm pacman-contrib && \
 # Bootstrap using the same scripts as my dotfiles and install extras
 RUN pacman -S --noconfirm sudo git && \
     git clone --recursive https://github.com/aignas/dotfiles.git ${HOME}/.dotfiles && \
+    # TODO @aignas (2019-06-12): when I change dotr to install the toolshed,
+    # add a CLI option to not do that
     "${HOME}/.dotfiles/bin/dotr" --no-push --no-gitconfig && \
     chsh -s $(which zsh)
 
