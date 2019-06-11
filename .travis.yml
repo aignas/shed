@@ -1,0 +1,13 @@
+sudo: required
+services: docker
+addons:
+  apt:
+    packages:
+      - moreutils
+
+script:
+  - bash -eo pipefail -c "make container push | ts '[%H:%M:%S]'"
+
+env:
+  global:
+  - secure: TODO
